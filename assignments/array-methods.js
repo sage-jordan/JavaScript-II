@@ -53,6 +53,7 @@ const runners = [{"id":1,"first_name":"Charmain","last_name":"Seiler","email":"c
 {"id":49,"first_name":"Bel","last_name":"Alway","email":"balway1c@ow.ly","shirt_size":"S","company_name":"Voolia","donation":107},
 {"id":50,"first_name":"Shell","last_name":"Baine","email":"sbaine1d@intel.com","shirt_size":"M","company_name":"Gabtype","donation":171}];
 
+
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs.  Combine both the first and last names into a new array called fullName. 
 let fullName = [];
@@ -93,22 +94,43 @@ runners.reduce((accumulator, currentValue) => {
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
 // Problem 1
-// Username Generator! // Doesn't Work..
-let userGen = function(array, identification) {
-    let firstname = array[identification].first_name.toLowerCase();
-    let lastname = array[identification].last_name.toLowerCase();
-    let ID = array[identification].id;
-    let username = `${firstname}${lastname}${ID}`;
-    return username;
-}
-let generator = function(array){
-    array.forEach(() => {
-        console.log(userGen(array, this.id));
-    }, this);
-}
-console.log(generator(runners));
-
+// Username Generator!!
+let usernameList = [];
+runners.forEach((element, i) => {
+    let firstname = element.first_name.toLowerCase();
+    let lastname = element.last_name.toLowerCase();
+    usernameList.push(`${firstname}${lastname}${element.id}`);
+});
+// console.log(usernameList);
 
 // Problem 2
+//Sort by company
+function groupBy(objectArray, property) {
+    return objectArray.reduce(function (accumulator, object) {
+        var key = object[property];
+        if (!accumulator[key]) {
+        accumulator[key] = [];
+        }
+        accumulator[key].push(object);
+        return accumulator;
+    }, {});
+}
+var groupedByCompany = groupBy(runners, 'company_name');
+// console.log(groupedByCompany);
 
 // Problem 3
+// Count sizes (incompleted..)
+
+function runnersSizes(objectArray, property) {
+    return objectArray.reduce(function (accumulator, object) {
+        var key = object[property];
+        if (!accumulator[key]) {
+        accumulator[key] = [];
+        }
+        let num = 0;
+        accumulator[key].push(num + 1);
+        return accumulator;
+    }, {});
+}
+var groupedBySize = runnersSizes(runners, 'shirt_size');
+console.log(groupedBySize);
