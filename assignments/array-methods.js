@@ -119,7 +119,7 @@ var groupedByCompany = groupBy(runners, 'company_name');
 // console.log(groupedByCompany);
 
 // Problem 3
-// Count sizes (incompleted..)
+// Count sizes (incompleted but functional)
 
 function runnersSizes(objectArray, property) {
     return objectArray.reduce(function (accumulator, object) {
