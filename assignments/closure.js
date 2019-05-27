@@ -30,15 +30,16 @@ const counterFactory = (increment, decrement) => {
   // `increment` should increment a counter variable in closure scope and return it.
   // `decrement` should decrement the counter variable and return it.
   newObj = [];
-//   function var1(increment) {
-//     return ++increment;
-//   }
-//   function var2(decrement) {
-//     return --decrement;
-//   }
-//   newObj.push(var1);
-//   newObj.push(var2);
-//   return newObj
+  newObj.incrementMethod = (i) => {
+    var n = i;
+    return ++n;
+  };
+  newObj.decrementMethod = (d) => {
+    var x = 0;
+    for(x=d;x>0;x--);
+    return x;
+  };
+  console.log(newObj.incrementMethod(increment));
+  console.log(newObj.decrementMethod(decrement));
 };
-// // let countNums = counterFactory(1, 10);
-// console.log(counterFactory(1, 10));
+let countNums = counterFactory(1, 10);
